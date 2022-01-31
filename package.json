@@ -1,35 +1,42 @@
 {
-  "name": "cross-storage",
-  "version": "1.0.0",
-  "description": "Cross domain local storage",
+  "name": "@thehotelsnetwork/cross-storage",
+  "version": "2.0.0",
+  "description": "Cross domain local/session/cookie storage",
   "keywords": [
     "local",
+    "session",
+    "cookie",
+    "js-cookie",
     "storage",
     "cross",
     "domain"
   ],
   "main": "lib/index.js",
-  "author": "Daniel St. Jules <danielst.jules@gmail.com>",
+  "author": "Daniel St. Jules <danielst.jules@gmail.com>, The Hotels Network <techteam@thehotelsnetwork.com>",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/zendesk/cross-storage",
+  "homepage": "https://github.com/the-hotels-network/cross-storage",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zendesk/cross-storage.git"
+    "url": "https://github.com/the-hotels-network/cross-storage.git"
   },
   "devDependencies": {
     "connect": "^2.25.7",
     "expect.js": "^0.3.1",
-    "gulp": "*",
+    "gulp": "^3.9.1",
+    "gulp-header": "^1.1.1",
     "gulp-jshint": "^1.8.4",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1",
-    "gulp-header": "^1.1.1",
     "gulp-rimraf": "^0.1.0",
+    "gulp-uglify": "^0.3.1",
+    "js-cookie": "^3.0.1",
     "serve-static": "^1.5.3",
     "zuul": "~3.10.1"
   },
   "scripts": {
     "test": "./node_modules/.bin/zuul --local 8080 --ui mocha-bdd -- test/test.js",
     "saucetest": "./node_modules/.bin/zuul --ui mocha-bdd -- test/test.js"
+  },
+  "volta": {
+    "node": "10.24.1"
   }
 }

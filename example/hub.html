@@ -3,12 +3,17 @@
   <title>Cross Storage Hub</title>
 </head>
 <body>
-  <script type="text/javascript" src="../lib/hub.js"></script>
+  <script type="text/javascript" src="../dist/hub.js"></script>
   <script>
     // Limit requests to any client running on .localhost:300x
     CrossStorageHub.init([
       {origin: /.*localhost:300\d$/, allow: ['get', 'set', 'del']}
-    ]);
+    ], {
+      expires: 365,
+      path: '',
+      sameSite: 'Lax',
+      secure: true,
+    });
   </script>
 </body>
 </html>
