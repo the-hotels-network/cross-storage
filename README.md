@@ -119,7 +119,7 @@ init code via another resource.
 
 ## API
 
-#### CrossStorageHub.init(permissions)
+#### CrossStorageHub.init(permissions, attributes)
 
 Accepts an array of objects with two keys: origin and allow. The value
 of origin is expected to be a RegExp, and allow, an array of strings.
@@ -127,6 +127,8 @@ The cross storage hub is then initialized to accept requests from any of
 the matching origins, allowing access to the associated lists of methods.
 Methods may include any of: get, set, del, getKeys and clear. A 'ready'
 message is sent to the parent window once complete.
+
+The second parameter `attributes` accepts a [js-cookie attributes object](https://www.npmjs.com/package/js-cookie#cookie-attributes).
 
 ``` javascript
 CrossStorageHub.init([
@@ -150,7 +152,8 @@ var storage = new CrossStorageClient('http://localhost:3000/hub.html');
 
 var storage = new CrossStorageClient('http://localhost:3000/hub.html', {
   timeout: 5000,
-  frameId: 'storageFrame'
+  frameId: 'storageFrame',
+  store: 'localStorage' // 'localStorage' | 'sessionStorage' | 'cookieStorage'
 });
 ```
 
