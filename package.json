@@ -1,6 +1,6 @@
 {
   "name": "@thehotelsnetwork/cross-storage",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cross domain local/session/cookie storage",
   "keywords": [
     "local",
