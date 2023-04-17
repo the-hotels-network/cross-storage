@@ -1,7 +1,7 @@
 /**
  * @thehotelsnetwork/cross-storage - Cross domain local/session/cookie storage
  *
- * @version   2.0.1
+ * @version   2.1.1
  * @link      https://github.com/the-hotels-network/cross-storage
  * @author    Daniel St. Jules <danielst.jules@gmail.com>, The Hotels Network <techteam@thehotelsnetwork.com>
  * @copyright Zendesk
@@ -352,7 +352,7 @@
             if (!client._hub) return;
 
             client._hub.postMessage('cross-storage:poll', targetOrigin);
-        }, 1000);
+        }, 50);
     };
 
     /**
@@ -370,6 +370,7 @@
 
         frame = window.document.createElement('iframe');
         frame.id = this._frameId;
+        frame.sandbox = 'allow-scripts allow-same-origin';
 
         // Style the iframe
         for (key in CrossStorageClient.frameStyle) {
