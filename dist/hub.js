@@ -149,7 +149,7 @@
 /**
  * @thehotelsnetwork/cross-storage - Cross domain local/session/cookie storage
  *
- * @version   2.0.1
+ * @version   2.1.1
  * @link      https://github.com/the-hotels-network/cross-storage
  * @author    Daniel St. Jules <danielst.jules@gmail.com>, The Hotels Network <techteam@thehotelsnetwork.com>
  * @copyright Zendesk
