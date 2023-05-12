@@ -149,7 +149,7 @@
 /**
  * @thehotelsnetwork/cross-storage - Cross domain local/session/cookie storage
  *
- * @version   2.1.1
+ * @version   2.2.0
  * @link      https://github.com/the-hotels-network/cross-storage
  * @author    Daniel St. Jules <danielst.jules@gmail.com>, The Hotels Network <techteam@thehotelsnetwork.com>
  * @copyright Zendesk
@@ -463,6 +463,18 @@
         return new Date().getTime();
     };
 
-    root.CrossStorageHub = CrossStorageHub;
-
+   /**
+    * Export for various environments.
+    */
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = CrossStorageHub;
+    } else if (typeof exports !== 'undefined') {
+        exports.CrossStorageHub = CrossStorageHub;
+    } else if (typeof define === 'function' && define.amd) {
+        define([], function() {
+            return CrossStorageHub;
+        });
+    } else {
+        root.CrossStorageHub = CrossStorageHub;
+    }
 }(this));
