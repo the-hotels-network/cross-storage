@@ -1,7 +1,7 @@
 /**
  * @thehotelsnetwork/cross-storage - Cross domain local/session/cookie storage
  *
- * @version   2.1.1
+ * @version   2.2.0
  * @link      https://github.com/the-hotels-network/cross-storage
  * @author    Daniel St. Jules <danielst.jules@gmail.com>, The Hotels Network <techteam@thehotelsnetwork.com>
  * @copyright Zendesk
@@ -45,6 +45,7 @@
      * @property {function} _listener  The listener added to the window
      * @property {Window}   _hub       The hub window
      * @property {string}   _store     The type of store used 'localStorage'|'sessionStorage'|'cookieStorage'
+     * @property {bool}     _wildcardTargetOrigin     Use '*' as targetOrigin when sending messages
      */
     function CrossStorageClient(url, opts) {
         opts = opts || {};
@@ -60,6 +61,8 @@
         this._timeout   = opts.timeout || 5000;
         this._listener  = null;
         this._store     = opts.store || 'localStorage';
+        this._wildcardTargetOrigin = opts.wildcardTargetOrigin === undefined
+            ? true : opts.wildcardTargetOrigin;
 
         this._installListener();
 
@@ -345,7 +348,7 @@
         client = this;
 
         // postMessage requires that the target origin be set to "*" for "file://"
-        targetOrigin = (client._origin === 'file://') ? '*' : client._origin;
+        targetOrigin = (client._origin === 'file://' || client._wildcardTargetOrigin) ? '*' : client._origin;
 
         interval = setInterval(function() {
             if (client._connected) return clearInterval(interval);
@@ -442,7 +445,7 @@
             }
 
             // postMessage requires that the target origin be set to "*" for "file://"
-            targetOrigin = (client._origin === 'file://') ? '*' : client._origin;
+            targetOrigin = (client._origin === 'file://' || client._wildcardTargetOrigin) ? '*' : client._origin;
 
             // Send serialized message
             client._hub.postMessage(JSON.stringify(req), targetOrigin);
@@ -454,6 +457,18 @@
         });
     };
 
-    root.CrossStorageClient = CrossStorageClient;
-
+   /**
+    * Export for various environments.
+    */
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = CrossStorageClient;
+    } else if (typeof exports !== 'undefined') {
+        exports.CrossStorageClient = CrossStorageClient;
+    } else if (typeof define === 'function' && define.amd) {
+        define([], function() {
+            return CrossStorageClient;
+        });
+    } else {
+        root.CrossStorageClient = CrossStorageClient;
+    }
 }(this));

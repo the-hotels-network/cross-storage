@@ -1,6 +1,6 @@
 {
   "name": "@thehotelsnetwork/cross-storage",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Cross domain local/session/cookie storage",
   "keywords": [
     "local",
@@ -33,6 +33,7 @@
     "zuul": "~3.10.1"
   },
   "scripts": {
+    "build": "gulp dist",
     "test": "./node_modules/.bin/zuul --local 8080 --ui mocha-bdd -- test/test.js",
     "saucetest": "./node_modules/.bin/zuul --ui mocha-bdd -- test/test.js"
   },
